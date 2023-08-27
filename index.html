@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Markdown to HTML</title>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@12.1.0/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-checkbox@1.1.0/dist/markdown-it-checkbox.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #markdown-content {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <div id="markdown-content">
+    <!-- Your Markdown content will be displayed here -->
+  </div>
+
+  <script>
+    // Sample Markdown content
+    var markdownText = `
+|Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|
+|---|---|---|---|---|---|---|
+|<sub>Aug 27</sub><br>Unplanned<br><sub>2 servings</sub><br><br><br>___________________|<sub>Aug 28</sub><br>Steak and Squash<br><sub>2 servings</sub><br><br><br>___________________|<sub>Aug 29</sub><br>Farmer Sausage and Beans<br><sub>3 servings</sub><br><br><br>___________________|<sub>Aug 30</sub><br>Meatballs and Squash<br><sub>3 servings</sub><br><br><br>___________________|<sub>Aug 31</sub><br>Greek Bowl<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 01</sub><br>Vermicelli Salmon<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 02</sub><br>Unplanned<br><sub>2 servings</sub><br><br><br>___________________|
+|<sub>Sep 03</sub><br>Burito Beef Bowl<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 04</sub><br>Steak and Squash<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 05</sub><br>Farmer Sausage and Beans<br><sub>3 servings</sub><br><br><br>___________________|<sub>Sep 06</sub><br>Meatballs and Squash<br><sub>3 servings</sub><br><br><br>___________________|<sub>Sep 07</sub><br>Greek Bowl<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 08</sub><br>Vermicelli Salmon<br><sub>2 servings</sub><br><br><br>___________________|<sub>Sep 09</sub><br>Unplanned<br><sub>2 servings</sub><br><br><br>___________________|
+### Grocery List:
+**Canned Goods:**
+- [ ] lima beans: 3.0 can
+- [ ] salsa: 180 ml
+- [ ] tahini: 30 ml
+
+**Dry Goods:**
+- [ ] frozen black beans: 720 ml
+- [ ] frozen chickpeas: 480 ml
+- [ ] peantus: 240 ml
+
+**Freezer:**
+- [ ] frozen avaocado: 240 ml
+- [ ] frozen corn: 240 ml
+
+**Meat:**
+- [ ] chicken thighs: 2.0 lb
+- [ ] egg: 3.0 count
+- [ ] farmer sausage: 3.0 count
+- [ ] frozen cooked ground beef: 200.0 g
+- [ ] frozen salmon fillets: 4.0 count
+- [ ] ground beef: 3.0 lb
+- [ ] steak: 4.0 count
+
+**N/A:**
+- [ ] water: 57.6 ml
+
+**Pantry:**
+- [ ] fish sauce: 60 ml
+- [ ] oil: 30 ml
+- [ ] olive oil: 180.0 ml
+
+**Produce:**
+- [ ] cabbage: 0.5 count
+- [ ] cucumber: 2.66 count
+- [ ] fresh ginger: 10 ml
+- [ ] frozen spinach: 600.0 g
+- [ ] garlic: 3.0 clove
+- [ ] lemon juice: 30 ml
+- [ ] lettus: 3.0 head
+- [ ] lime juice: 60 ml
+- [ ] onion: 2.5 count
+- [ ] parsley: 15.0 ml
+- [ ] spaghetti squash: 3.0 count
+- [ ] spinach: 3.5 bag
+- [ ] squash: 4.0 count
+- [ ] tomato: 14.0 count
+- [ ] zuchini: 2.0 count
+
+**Seasoning:**
+- [ ] basil: 15.0 ml
+- [ ] black pepper: 1.2 ml
+- [ ] chilli garlic paste: 2.5 ml
+- [ ] garlic powder: 25.0 ml
+- [ ] greek seasoning: 20 ml
+- [ ] italian seasoning: 15.0 ml
+- [ ] lemmon pepper seasoning: 15.0 ml
+- [ ] mexican seasoning: 15 ml
+- [ ] onion powder: 25.0 ml
+- [ ] oregano: 15.0 ml
+- [ ] paprika: 25.0 ml
+- [ ] pepper: 36.0 ml
+- [ ] rice vinegar: 90 ml
+- [ ] salt: 37.5 ml
+
+
+
+### Unplanned
+*Servings: 2*
+**Ingredients:**
+- water: 0.0 ml
+
+**Instructions:**
+- Takeout / Make something up
+
+### Steak and Squash
+*Servings: 2*
+**Ingredients:**
+- steak: 2.0 count
+- squash: 1.0 count
+- spinach: 1/2 bag
+- olive oil: 1.0 tbsp
+- salt: 1.0 tsp
+- pepper: 1.0 tsp
+- garlic powder: 1.0 tsp
+- onion powder: 1.0 tsp
+- paprika: 1.0 tsp
+
+**Instructions:**
+- Preheat oven to 400 degrees
+- Cut squash in half and remove seeds
+- Cut squash into 1/2 inch slices
+- Place squash on baking sheet and drizzle with olive oil
+- Sprinkle salt, pepper, garlic powder, onion powder, and paprika on squash
+- Bake squash for 20 minutes
+- Coat steak with olive oil, salt, and pepper
+- Heat Air Fryer to 375 degrees
+- Cook steak in Air Fryer for 14 minutes
+- Let steak rest for 5 minutes
+- Serve steak and squash with spinach
+
+### Farmer Sausage and Beans
+*Servings: 3*
+**Ingredients:**
+- lima beans: 1.5 can
+- farmer sausage: 1.5 count
+- onion: 3/4 count
+- frozen spinach: 300.0 g
+- olive oil: 1.5 tbsp
+- tomato: 3.0 count
+- italian seasoning: 1.5 tsp
+
+**Instructions:**
+- Slice farmer sausage and onion
+- Heat olive oil in a pan
+- Add onion to pan and cook until translucent
+- Add farmer sausage to pan and cook until browned
+- Add the lima beans
+- Add spinach, tomato, and italian seasoning to pan and cook until spinach is wilted
+- Add gnocchi to pan and mix
+
+### Meatballs and Squash
+*Servings: 3*
+**Ingredients:**
+- ground beef: 1.5 lb
+- spaghetti squash: 1.5 count
+- spinach: 3/4 bag
+- olive oil: 1.5 tbsp
+- salt: 1.5 tsp
+- pepper: 1.5 tsp
+- garlic powder: 1.5 tsp
+- onion powder: 1.5 tsp
+- paprika: 1.5 tsp
+- oregano: 1.5 tsp
+- basil: 1.5 tsp
+- parsley: 1.5 tsp
+- egg: 1.5 count
+
+**Instructions:**
+- Preheat oven to 400 degrees
+- Cut squash in half and remove seeds
+- Cut squash into 1/2 inch slices
+- Place squash on baking sheet and drizzle with olive oil
+- Sprinkle salt, pepper, garlic powder, onion powder, and paprika on squash
+- Bake squash for 20 minutes
+- Mix ground beef, egg, salt, pepper, garlic powder, onion powder, paprika, oregano, basil, and parsley in a bowl
+- Form ground beef into meatballs
+- Put meatballs on baking sheet and bake for 20 minutes
+- Serve meatballs and squash with spinach
+
+### Greek Bowl
+*Servings: 2*
+**Ingredients:**
+- chicken thighs: 1.0 lb
+- squash: 1.0 count
+- spinach: 1/2 bag
+- cucumber: 1.0 count
+- tomato: 2.0 count
+- olive oil: 1.0 tbsp
+- salt: 1.0 tsp
+- pepper: 1.0 tsp
+- greek seasoning: 2.0 tsp
+- Hummus [recipe]: 1/2 batch
+
+**Instructions:**
+- Coat chicken thighs with olive oil, salt, and pepper
+- Air fry chicken thighs for 20 minutes at 375 degrees
+- Cut squash in half and remove seeds
+- Cube squash
+- Place squash on baking sheet and drizzle with olive oil
+- Sprinkle salt and pepper on squash
+- Bake squash for 20 minutes at 400 degrees
+- Cut cucumber and tomato into chunks
+- Drizzle cucumber and tomato with olive oil and add greek seasoning
+- mix cucumber and tomato
+- Serve chicken thighs, squash, cucumber, tomato, and spinach with hummus
+
+### Hummus
+*Servings: 1.0*
+**Ingredients:**
+- frozen chickpeas: 1.0 cups
+- tahini: 1.0 tbsp
+- lemon juice: 1.0 tbsp
+- garlic: 0.5 clove
+- salt: 1/4 tsp
+- olive oil: 0.5 tbsp
+- water: 3/25 cup
+
+**Instructions:**
+- combine everything in a food processor or blender
+- blend until smooth
+- add more water if needed
+
+### Vermicelli Salmon
+*Servings: 2*
+**Ingredients:**
+- zuchini: 1.0 count
+- lettus: 1.0 head
+- cabbage: 1/4 count
+- tomato: 1.0 count
+- cucumber: 33/100 count
+- peantus: 1/2 cup
+- frozen salmon fillets: 2.0 count
+- oil: 1.0 tbsp
+- lemmon pepper seasoning: 1/2 tbsp
+- vermicelli sauce [recipe]: 1.0 batch
+
+**Instructions:**
+- Thaw salmon
+- Coat salmon with oil and seasoning
+- Air fry salmon for 13 minutes at 375 degrees
+- Prep the tomato, cucumber, lettus, cabbage, and peanuts
+- Boil water
+- Spiralize zuchini
+- Cook zuchini noodles for 3 minutes
+- Drain noodles
+- Combine everything in a bowl and add sauce
+
+### Vermicelli Sauce
+*Servings: 2.0*
+**Ingredients:**
+- rice vinegar: 3.0 tbsp
+- lime juice: 2.0 tbsp
+- fish sauce: 2.0 tbsp
+- garlic: 1.0 clove
+- chilli garlic paste: 1/4 tsp
+- fresh ginger: 1.0 tsp
+- black pepper: 3/25 tsp
+
+**Instructions:**
+- Combine rice vinegar, lime juice, fish sauce, minced garlic, chopped red chili, grated ginger, honey or sugar substitute, and a dash of black pepper in a bowl.
+- Whisk the ingredients together until well combined.
+- Taste the vinaigrette and adjust the flavors as needed.
+- Let the vinaigrette sit for about 10-15 minutes to allow the flavors to meld.
+- Before using, give the vinaigrette a quick stir to ensure even distribution of ingredients.
+
+### Burito Beef Bowl
+*Servings: 2*
+**Ingredients:**
+- frozen cooked ground beef: 200.0 g
+- frozen black beans: 3.0 cup
+- frozen corn: 1.0 cup
+- frozen avaocado: 1.0 cup
+- onion: 1.0 count
+- pepper: 1.0 count
+- tomato: 2.0 count
+- lettus: 1.0 head
+- salsa: 3/4 cup
+- mexican seasoning: 1.0 tbsp
+- olive oil: 1.0 tbsp
+
+**Instructions:**
+- Heat olive oil in a pan
+- Add onion and pepper to pan and cook until translucent
+- Thaw ground beef, black beans, corn, and avocado
+- Add ground beef, black beans, corn, and mexican seasoning to pan and cook until heated through
+- Serve ground beef mixture on top of lettuce
+- Top with salsa, avocado, and tomato
+
+
+    `;
+
+    // Initialize markdown-it with checkbox rendering
+    var md = new markdownit({ html: true }).use(markdownitCheckbox);
+    var htmlContent = md.render(markdownText);
+
+    // Set the HTML content in the target div
+    document.getElementById('markdown-content').innerHTML = htmlContent;
+
+    // Function to save checkbox states to local storage
+    function saveCheckboxStates() {
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      var checkboxStates = {};
+
+      checkboxes.forEach(function(checkbox, index) {
+        checkboxStates['checkbox_' + index] = checkbox.checked;
+      });
+
+      localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+    }
+
+    // Function to load checkbox states from local storage
+    function loadCheckboxStates() {
+      var checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
+
+      if (checkboxStates) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(function(checkbox, index) {
+          checkbox.checked = checkboxStates['checkbox_' + index];
+        });
+      }
+    }
+
+    // Call the function to load checkbox states from local storage
+    loadCheckboxStates();
+
+    // Add event listener to checkboxes to save state when changed
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function(checkbox, index) {
+      checkbox.addEventListener('change', function() {
+        saveCheckboxStates();
+      });
+    });
+  </script>
+</body>
+</html>
